@@ -2,6 +2,7 @@
 {
     using Android.App;
     using Android.OS;
+    using Infrastructure;
 
     [Activity(Label = "Xamarin.Mindstorm", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
@@ -11,6 +12,11 @@
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.Main);
+
+            var communicator = new MindstormCommunicator();
+
+            communicator.Connect();
+            communicator.Disconnect();
         }
     }
 }
