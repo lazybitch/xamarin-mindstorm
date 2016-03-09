@@ -2,6 +2,7 @@
 {
     using Android.App;
     using Android.OS;
+    using Android.Widget;
     using Infrastructure;
 
     [Activity(Label = "Xamarin.Mindstorm", MainLauncher = true, Icon = "@drawable/icon")]
@@ -16,7 +17,15 @@
             var communicator = new MindstormCommunicator();
 
             communicator.Connect();
-            communicator.Disconnect();
+
+            var button = FindViewById<Button>(Resource.Id.MyButton);
+
+            button.Click += delegate
+            {
+                var message1 = MindstormCommandService.GetToneMessage(3500, 1000);
+
+                communicator.WriteMessage(message1);
+            };
         }
     }
 }
