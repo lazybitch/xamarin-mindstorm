@@ -36,5 +36,15 @@ namespace Xamarin.Mindstorm.Infrastructure
         {
             socket.Close();
         }
+
+        public void WriteMessage(MindstormMessage message)
+        {
+            if (socket == null || !socket.IsConnected || socket.OutputStream == null)
+            {
+                throw new IOException("Mindstor communication - output socket error.");
+            }
+
+            socket.OutputStream.Write(message.Payload, 0, message.Payload.Length);
+        }
     }
 }
