@@ -6,16 +6,18 @@ namespace Xamarin.Mindstorm.Infrastructure
     {
         public static MindstormMessage GetToneMessage(int frequency, int duration)
         {
-            var message = new MindstormMessage(6)
+            var message = new MindstormMessage(8)
             {
                 Payload =
                 {
-                    [0] = MindstormCommands.DirectCommandNoReply,
-                    [1] = MindstormCommands.PlayTone,
-                    [2] = (byte) frequency,
-                    [3] = (byte) (frequency >> 8),
-                    [4] = (byte) duration,
-                    [5] = (byte) (duration >> 8)
+                    [0] = 6,
+                    [1] = 0,
+                    [2] = MindstormCommands.DirectCommandNoReply,
+                    [3] = MindstormCommands.PlayTone,
+                    [4] = (byte) frequency,
+                    [5] = (byte) (frequency >> 8),
+                    [6] = (byte) duration,
+                    [7] = (byte) (duration >> 8)
                 }
             };
 
