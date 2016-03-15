@@ -3,6 +3,7 @@
     using Android.App;
     using Android.OS;
     using Android.Widget;
+    using Constants;
     using Infrastructure;
 
     [Activity(Label = "Xamarin.Mindstorm", MainLauncher = true, Icon = "@drawable/icon")]
@@ -18,11 +19,20 @@
 
             communicator.Connect();
 
-            var button = FindViewById<Button>(Resource.Id.MyButton);
+            var buttonTestSound = FindViewById<Button>(Resource.Id.ButtonTestSound);
 
-            button.Click += delegate
+            buttonTestSound.Click += (s, e) =>
             {
                 var message1 = MindstormCommandService.GetToneMessage(3500, 1000);
+
+                communicator.WriteMessage(message1);
+            };
+
+            var buttonTestMotor = FindViewById<Button>(Resource.Id.ButtonTestMotor);
+
+            buttonTestMotor.Click += (s, e) =>
+            {
+                var message1 = MindstormCommandService.GetMotorMessage(MindstormComponents.MotorA, 100, 100);
 
                 communicator.WriteMessage(message1);
             };
