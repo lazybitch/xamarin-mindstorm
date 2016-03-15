@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\MindstormCommands.cs" />
+    <Compile Include="Constants\MindstormComponents.cs" />
     <Compile Include="Infrastructure\MindstormCommandService.cs" />
     <Compile Include="Infrastructure\MindstormCommunicator.cs" />
     <Compile Include="Infrastructure\MindstormMessage.cs" />
