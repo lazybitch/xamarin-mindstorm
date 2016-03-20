@@ -72,5 +72,28 @@ namespace Xamarin.Mindstorm.Infrastructure
 
             return message;
         }
+
+        public static MindstormMessage GetMotorMessage(int motor, int speed)
+        {
+            return GetMotorMessage(motor, speed, 0);
+        }
+
+        public static MindstormMessage GetResetMessage(int motor)
+        {
+            var message = new MindstormMessage(6)
+            {
+                Payload =
+                {
+                    [0] = 4,
+                    [1] = 0,
+                    [2] = MindstormCommands.DirectCommandNoReply,
+                    [3] = MindstormCommands.ResetMotorPosition,
+                    [4] = (byte) motor,
+                    [5] = 0
+                }
+            };
+
+            return message;
+        }
     }
 }
