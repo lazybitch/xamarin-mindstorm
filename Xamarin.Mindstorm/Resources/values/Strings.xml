@@ -3,5 +3,8 @@
 <resources>
   <string name="TestSound">Test Sound</string>
   <string name="TestMotor">Test Motor</string>
+  <string name="StartMotor">Start Motor</string>
+  <string name="StopMotor">Stop Motor</string>
+  <string name="Speed">Speed</string>
   <string name="ApplicationName">Xamarin.Mindstorm</string>
 </resources>
