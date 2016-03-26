@@ -4,32 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <Button
-        android:id="@+id/ButtonTestSound"
+        android:id="@+id/ButtonMotorTest"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/TestSound" />
+        android:text="@string/MotorTest" />
     <Button
-        android:id="@+id/ButtonTestMotor"
+        android:id="@+id/ButtonMotorController"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/TestMotor" />
-    <TextView
-        android:text="@string/Speed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SeekBarSpeed"
-        android:max="100" />
-    <Button
-        android:id="@+id/ButtonStartMotor"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/StartMotor" />
-    <Button
-        android:id="@+id/ButtonStopMotor"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/StopMotor" />
+        android:text="@string/MotorController" />
 </LinearLayout>

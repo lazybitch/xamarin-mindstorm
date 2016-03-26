@@ -6,5 +6,7 @@
   <string name="StartMotor">Start Motor</string>
   <string name="StopMotor">Stop Motor</string>
   <string name="Speed">Speed</string>
+  <string name="MotorTest">Motor Test</string>
+  <string name="MotorController">Motor Controller</string>
   <string name="ApplicationName">Xamarin.Mindstorm</string>
 </resources>

@@ -1,4 +1,4 @@
-﻿namespace Xamarin.Mindstorm
+namespace Xamarin.Mindstorm.Activities
 {
     using Android.App;
     using Android.OS;
@@ -6,14 +6,14 @@
     using Constants;
     using Infrastructure;
 
-    [Activity(Label = "Xamarin.Mindstorm", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    [Activity(Label = "Motor", Theme = "@android:style/Theme.Holo.Light")]
+    public class MotorActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.Motor);
 
             var communicator = new MindstormCommunicator();
 

@@ -49,17 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\MotorActivity.cs" />
     <Compile Include="Constants\MindstormCommands.cs" />
     <Compile Include="Constants\MindstormComponents.cs" />
     <Compile Include="Infrastructure\MindstormCommandService.cs" />
     <Compile Include="Infrastructure\MindstormCommunicator.cs" />
     <Compile Include="Infrastructure\MindstormMessage.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
+    <AndroidResource Include="Resources\layout\Motor.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
