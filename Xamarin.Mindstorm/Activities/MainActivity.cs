@@ -18,14 +18,19 @@
 
             buttonTestMotor.Click += (s, e) =>
             {
-                var intent = new Intent(this, typeof(MotorActivity));
+                var intent = new Intent(this, typeof (MotorActivity));
 
                 StartActivity(intent);
             };
 
             var buttonMotorController = FindViewById<Button>(Resource.Id.ButtonMotorController);
 
-            buttonMotorController.Click += (s, e) => { };
+            buttonMotorController.Click += (s, e) =>
+            {
+                var intent = new Intent(this, typeof (ControllerActivity));
+
+                StartActivity(intent);
+            };
         }
     }
 }

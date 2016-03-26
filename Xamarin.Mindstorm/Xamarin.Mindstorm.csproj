@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\ControllerActivity.cs" />
     <Compile Include="Activities\MotorActivity.cs" />
     <Compile Include="Constants\MindstormCommands.cs" />
     <Compile Include="Constants\MindstormComponents.cs" />
@@ -73,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\layout\Controller.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
