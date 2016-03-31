@@ -4,5 +4,7 @@ namespace Xamarin.Mindstorm.Constants
     {
         // Motors
         public const int MotorA = 0;
+
+        public const int MotorB = 1;
     }
 }
