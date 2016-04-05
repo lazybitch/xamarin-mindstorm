@@ -95,5 +95,22 @@ namespace Xamarin.Mindstorm.Infrastructure
 
             return message;
         }
+
+        public static MindstormMessage GetSensorReadMessage(int sensor)
+        {
+            var message = new MindstormMessage(5)
+            {
+                Payload =
+                {
+                    [0] = 3,
+                    [1] = 0,
+                    [2] = MindstormCommands.DirectCommandReply,
+                    [3] = MindstormCommands.ReadSensor,
+                    [4] = (byte) sensor
+                }
+            };
+
+            return message;
+        }
     }
 }
