@@ -1,5 +1,6 @@
 namespace Xamarin.Mindstorm.Infrastructure
 {
+    using System;
     using System.IO;
     using System.Linq;
     using Android.Bluetooth;
@@ -9,6 +10,8 @@ namespace Xamarin.Mindstorm.Infrastructure
     {
         private const string DeviceName = "NXT";
         private const string SppId = "00001101-0000-1000-8000-00805F9B34FB";
+
+        private readonly byte[] buffer = new byte[1024];
 
         private BluetoothSocket socket;
 
@@ -45,6 +48,21 @@ namespace Xamarin.Mindstorm.Infrastructure
             }
 
             socket.OutputStream.Write(message.Payload, 0, message.Payload.Length);
+        }
+
+        public MindstormMessage ReadMessage()
+        {
+            if (socket == null || !socket.IsConnected || socket.InputStream == null)
+            {
+                throw new IOException("Mindstor communication - input socket error.");
+            }
+
+            var length = socket.InputStream.Read(buffer, 0, buffer.Length);
+            var result = new MindstormMessage(length);
+
+            Array.Copy(buffer, 0, result.Payload, 0, length);
+
+            return result;
         }
     }
 }
