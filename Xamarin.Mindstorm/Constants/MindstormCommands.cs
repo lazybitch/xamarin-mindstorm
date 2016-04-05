@@ -10,6 +10,7 @@ namespace Xamarin.Mindstorm.Constants
         public const byte PlayTone = 0x03;
         public const byte SetOutputState = 0x04;
         public const byte ResetMotorPosition = 0x0A;
+        public const byte ReadSensor = 0x07;
 
         // Regulation modes
         public const byte RegulationModeMotorSpeed = 0x01;
