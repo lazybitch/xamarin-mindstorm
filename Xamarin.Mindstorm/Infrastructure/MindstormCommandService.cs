@@ -96,7 +96,7 @@ namespace Xamarin.Mindstorm.Infrastructure
             return message;
         }
 
-        public static MindstormMessage GetSensorReadMessage(int sensor)
+        public static MindstormMessage GetSensorReadMessage(MindstormSensor sensor)
         {
             var message = new MindstormMessage(5)
             {
@@ -107,6 +107,25 @@ namespace Xamarin.Mindstorm.Infrastructure
                     [2] = MindstormCommands.DirectCommandReply,
                     [3] = MindstormCommands.ReadSensor,
                     [4] = (byte) sensor
+                }
+            };
+
+            return message;
+        }
+
+        public static MindstormMessage GetSensorModeMessage(MindstormSensor sensor, MindstormSensorType type, MindstormSensorMode mode)
+        {
+            var message = new MindstormMessage(7)
+            {
+                Payload =
+                {
+                    [0] = 5,
+                    [1] = 0,
+                    [2] = MindstormCommands.DirectCommandReply,
+                    [3] = MindstormCommands.SetSensorMode,
+                    [4] = (byte) sensor,
+                    [5] = (byte) type,
+                    [6] = (byte) mode
                 }
             };
 
