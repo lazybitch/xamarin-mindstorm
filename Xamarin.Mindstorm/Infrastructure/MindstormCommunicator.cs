@@ -4,6 +4,7 @@ namespace Xamarin.Mindstorm.Infrastructure
     using System.IO;
     using System.Linq;
     using Android.Bluetooth;
+    using Data;
     using Java.Util;
 
     public class MindstormCommunicator

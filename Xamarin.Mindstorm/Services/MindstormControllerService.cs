@@ -1,6 +1,7 @@
-namespace Xamarin.Mindstorm.Infrastructure
+namespace Xamarin.Mindstorm.Services
 {
     using Constants;
+    using Infrastructure;
 
     public class MindstormControllerService
     {

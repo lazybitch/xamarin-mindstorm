@@ -1,4 +1,4 @@
-namespace Xamarin.Mindstorm.Infrastructure
+namespace Xamarin.Mindstorm.Data
 {
     public class MindstormMessage
     {

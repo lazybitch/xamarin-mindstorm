@@ -7,6 +7,7 @@ namespace Xamarin.Mindstorm.Activities
     using Android.Widget;
     using Constants;
     using Infrastructure;
+    using Services;
 
     [Activity(Label = "Motor", Theme = "@android:style/Theme.Holo.Light")]
     public class SensorActivity : Activity

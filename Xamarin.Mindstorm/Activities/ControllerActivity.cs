@@ -5,7 +5,7 @@ namespace Xamarin.Mindstorm.Activities
     using Android.Views;
     using Android.Widget;
     using Constants;
-    using Infrastructure;
+    using Services;
 
     [Activity(Label = "Controller", Theme = "@android:style/Theme.Holo.Light")]
     public class ControllerActivity : Activity
