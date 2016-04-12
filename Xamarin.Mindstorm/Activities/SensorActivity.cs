@@ -8,6 +8,7 @@ namespace Xamarin.Mindstorm.Activities
     using Constants;
     using Infrastructure;
     using Services;
+    using Console = System.Console;
 
     [Activity(Label = "Motor", Theme = "@android:style/Theme.Holo.Light")]
     public class SensorActivity : Activity
@@ -39,6 +40,9 @@ namespace Xamarin.Mindstorm.Activities
                         communicator.WriteMessage(readInputMessage);
 
                         var readOutputMessage = communicator.ReadMessage();
+                        var sensorResponse = MindstormResponseService.GetSensorResponse(readOutputMessage);
+
+                        Console.WriteLine(sensorResponse.Scaled);
 
                         Thread.Sleep(100);
                     }
