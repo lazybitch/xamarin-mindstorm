@@ -13,4 +13,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/MotorController" />
+    <Button
+        android:id="@+id/ButtonSensorTest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/SensorTest" />
 </LinearLayout>

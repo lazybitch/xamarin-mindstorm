@@ -31,6 +31,15 @@
 
                 StartActivity(intent);
             };
+
+            var buttonSensorTest = FindViewById<Button>(Resource.Id.ButtonSensorTest);
+
+            buttonSensorTest.Click += (s, e) =>
+            {
+                var intent = new Intent(this, typeof (SensorActivity));
+
+                StartActivity(intent);
+            };
         }
     }
 }
