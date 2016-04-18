@@ -1,23 +1,41 @@
 namespace Xamarin.Mindstorm.Activities
 {
     using Android.App;
+    using Android.Content.PM;
     using Android.OS;
     using Android.Views;
     using Android.Widget;
     using Constants;
     using Services;
 
-    [Activity(Label = "Controller", Theme = "@android:style/Theme.Holo.Light")]
+    [Activity(
+        Label = "Controller",
+        Theme = "@android:style/Theme.Holo.Light",
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class ControllerActivity : Activity
     {
+        private MindstormControllerService controllerService;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.Controller);
 
-            var controllerService = new MindstormControllerService();
+            InitializeServices();
+            InitializeButtons();
+        }
 
+        private void InitializeServices()
+        {
+            if (controllerService == null)
+            {
+                controllerService = new MindstormControllerService();
+            }
+        }
+
+        private void InitializeButtons()
+        {
             FindViewById<ImageButton>(Resource.Id.ButtonForward).Touch += (s, e) =>
             {
                 switch (e.Event.Action)
