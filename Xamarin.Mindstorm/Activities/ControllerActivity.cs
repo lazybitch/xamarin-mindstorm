@@ -1,5 +1,7 @@
 namespace Xamarin.Mindstorm.Activities
 {
+    using System.Threading;
+    using System.Threading.Tasks;
     using Android.App;
     using Android.Content.PM;
     using Android.OS;
@@ -23,6 +25,7 @@ namespace Xamarin.Mindstorm.Activities
             SetContentView(Resource.Layout.Controller);
 
             InitializeServices();
+            InitializeWorker();
             InitializeButtons();
         }
 
@@ -32,6 +35,19 @@ namespace Xamarin.Mindstorm.Activities
             {
                 controllerService = new MindstormControllerService();
             }
+        }
+
+        private void InitializeWorker()
+        {
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    controllerService.ProcessBreak();
+                    Thread.Sleep(100);
+                }
+                // ReSharper disable once FunctionNeverReturns
+            });
         }
 
         private void InitializeButtons()
