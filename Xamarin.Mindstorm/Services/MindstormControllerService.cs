@@ -6,8 +6,8 @@ namespace Xamarin.Mindstorm.Services
     public class MindstormControllerService
     {
         private const int ZeroSpeed = 0;
-        private const int FullSpeed = 100;
-        private const int HallfSpeed = 50;
+        private const int FullSpeed = 50;
+        private const int HallfSpeed = 25;
 
         private readonly MindstormCommunicator communicator;
 
@@ -15,6 +15,36 @@ namespace Xamarin.Mindstorm.Services
         {
             communicator = new MindstormCommunicator();
             communicator.Connect();
+
+            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(
+                MindstormSensor.First,
+                MindstormSensorType.Touch,
+                MindstormSensorMode.Boolean);
+
+            communicator.WriteMessage(sensorModeMessage);
+            communicator.ReadMessage();
+        }
+
+        public bool IsMovementAllowed()
+        {
+            var readInputMessage = MindstormCommandService.GetSensorReadMessage(MindstormSensor.First);
+            communicator.WriteMessage(readInputMessage);
+
+            var readOutputMessage = communicator.ReadMessage();
+            var sensorResponse = MindstormResponseService.GetSensorResponse(readOutputMessage);
+
+            return sensorResponse.Scaled == 0;
+        }
+
+        public void ProcessBreak()
+        {
+            if (IsMovementAllowed())
+            {
+                return;
+            }
+
+            communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorA, ZeroSpeed));
+            communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorB, ZeroSpeed));
         }
 
         public void ProcessMovement(MindstormMovement movement)
