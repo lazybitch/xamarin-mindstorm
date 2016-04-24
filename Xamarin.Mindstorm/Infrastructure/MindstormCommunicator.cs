@@ -65,10 +65,12 @@ namespace Xamarin.Mindstorm.Infrastructure
                 throw new IOException("Mindstor communication - input socket error.");
             }
 
-            var length = socket.InputStream.Read(buffer, 0, buffer.Length);
-            var result = new MindstormMessage(length);
+            const int offset = 2;
 
-            Array.Copy(buffer, 0, result.Payload, 0, length);
+            var length = socket.InputStream.Read(buffer, 0, buffer.Length);
+            var result = new MindstormMessage(length - offset);
+
+            Array.Copy(buffer, offset, result.Payload, 0, length - offset);
 
             return result;
         }
