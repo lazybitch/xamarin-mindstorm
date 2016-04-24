@@ -48,6 +48,13 @@ namespace Xamarin.Mindstorm.Infrastructure
                 throw new IOException("Mindstor communication - output socket error.");
             }
 
+            var header = new byte[]
+            {
+                (byte) message.Payload.Length,
+                0
+            };
+
+            socket.OutputStream.Write(header, 0, header.Length);
             socket.OutputStream.Write(message.Payload, 0, message.Payload.Length);
         }
 

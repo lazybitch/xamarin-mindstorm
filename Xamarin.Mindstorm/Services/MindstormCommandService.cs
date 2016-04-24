@@ -7,18 +7,16 @@ namespace Xamarin.Mindstorm.Services
     {
         public static MindstormMessage GetToneMessage(int frequency, int duration)
         {
-            var message = new MindstormMessage(8)
+            var message = new MindstormMessage(6)
             {
                 Payload =
                 {
-                    [0] = 6,
-                    [1] = 0,
-                    [2] = MindstormCommands.DirectCommandNoReply,
-                    [3] = MindstormCommands.PlayTone,
-                    [4] = (byte) frequency,
-                    [5] = (byte) (frequency >> 8),
-                    [6] = (byte) duration,
-                    [7] = (byte) (duration >> 8)
+                    [0] = MindstormCommands.DirectCommandNoReply,
+                    [1] = MindstormCommands.PlayTone,
+                    [2] = (byte) frequency,
+                    [3] = (byte) (frequency >> 8),
+                    [4] = (byte) duration,
+                    [5] = (byte) (duration >> 8)
                 }
             };
 
@@ -37,39 +35,37 @@ namespace Xamarin.Mindstorm.Services
                 speed = -100;
             }
 
-            var message = new MindstormMessage(14)
+            var message = new MindstormMessage(12)
             {
                 Payload =
                 {
-                    [0] = 12,
-                    [1] = 0,
-                    [2] = MindstormCommands.DirectCommandNoReply,
-                    [3] = MindstormCommands.SetOutputState,
-                    [4] = (byte) motor
+                    [0] = MindstormCommands.DirectCommandNoReply,
+                    [1] = MindstormCommands.SetOutputState,
+                    [2] = (byte) motor
                 }
             };
 
             if (speed == 0)
             {
+                message.Payload[3] = 0;
+                message.Payload[4] = 0;
                 message.Payload[5] = 0;
                 message.Payload[6] = 0;
                 message.Payload[7] = 0;
-                message.Payload[8] = 0;
-                message.Payload[9] = 0;
             }
             else
             {
-                message.Payload[5] = (byte) speed;
-                message.Payload[6] = MindstormCommands.MotorOn + MindstormCommands.Brake;
-                message.Payload[7] = MindstormCommands.RegulationModeMotorSpeed;
-                message.Payload[8] = 0x00;
-                message.Payload[9] = MindstormCommands.MotorRunStateRunning;
+                message.Payload[3] = (byte) speed;
+                message.Payload[4] = MindstormCommands.MotorOn + MindstormCommands.Brake;
+                message.Payload[5] = MindstormCommands.RegulationModeMotorSpeed;
+                message.Payload[6] = 0x00;
+                message.Payload[7] = MindstormCommands.MotorRunStateRunning;
             }
 
-            message.Payload[10] = (byte) step;
-            message.Payload[11] = (byte) (step >> 8);
-            message.Payload[12] = (byte) (step >> 16);
-            message.Payload[13] = (byte) (step >> 24);
+            message.Payload[8] = (byte) step;
+            message.Payload[9] = (byte) (step >> 8);
+            message.Payload[10] = (byte) (step >> 16);
+            message.Payload[11] = (byte) (step >> 24);
 
             return message;
         }
@@ -81,16 +77,14 @@ namespace Xamarin.Mindstorm.Services
 
         public static MindstormMessage GetResetMessage(int motor)
         {
-            var message = new MindstormMessage(6)
+            var message = new MindstormMessage(4)
             {
                 Payload =
                 {
-                    [0] = 4,
-                    [1] = 0,
-                    [2] = MindstormCommands.DirectCommandNoReply,
-                    [3] = MindstormCommands.ResetMotorPosition,
-                    [4] = (byte) motor,
-                    [5] = 0
+                    [0] = MindstormCommands.DirectCommandNoReply,
+                    [1] = MindstormCommands.ResetMotorPosition,
+                    [2] = (byte) motor,
+                    [3] = 0
                 }
             };
 
@@ -99,15 +93,13 @@ namespace Xamarin.Mindstorm.Services
 
         public static MindstormMessage GetSensorReadMessage(MindstormSensor sensor)
         {
-            var message = new MindstormMessage(5)
+            var message = new MindstormMessage(3)
             {
                 Payload =
                 {
-                    [0] = 3,
-                    [1] = 0,
-                    [2] = MindstormCommands.DirectCommandReply,
-                    [3] = MindstormCommands.ReadSensor,
-                    [4] = (byte) sensor
+                    [1] = MindstormCommands.DirectCommandReply,
+                    [2] = MindstormCommands.ReadSensor,
+                    [3] = (byte) sensor
                 }
             };
 
@@ -116,17 +108,15 @@ namespace Xamarin.Mindstorm.Services
 
         public static MindstormMessage GetSensorModeMessage(MindstormSensor sensor, MindstormSensorType type, MindstormSensorMode mode)
         {
-            var message = new MindstormMessage(7)
+            var message = new MindstormMessage(5)
             {
                 Payload =
                 {
-                    [0] = 5,
-                    [1] = 0,
-                    [2] = MindstormCommands.DirectCommandReply,
-                    [3] = MindstormCommands.SetSensorMode,
-                    [4] = (byte) sensor,
-                    [5] = (byte) type,
-                    [6] = (byte) mode
+                    [0] = MindstormCommands.DirectCommandReply,
+                    [1] = MindstormCommands.SetSensorMode,
+                    [2] = (byte) sensor,
+                    [3] = (byte) type,
+                    [4] = (byte) mode
                 }
             };
 
