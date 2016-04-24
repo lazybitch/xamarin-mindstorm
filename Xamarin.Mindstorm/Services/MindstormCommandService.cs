@@ -97,9 +97,9 @@ namespace Xamarin.Mindstorm.Services
             {
                 Payload =
                 {
-                    [1] = MindstormCommands.DirectCommandReply,
-                    [2] = MindstormCommands.ReadSensor,
-                    [3] = (byte) sensor
+                    [0] = MindstormCommands.DirectCommandReply,
+                    [1] = MindstormCommands.ReadSensor,
+                    [2] = (byte) sensor
                 }
             };
 
