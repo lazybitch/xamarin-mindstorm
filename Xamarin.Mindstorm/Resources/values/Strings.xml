@@ -9,6 +9,7 @@
   <string name="Test">Test</string>
   <string name="MotorTest">Motor Test</string>
   <string name="SensorTest">Sensor Test</string>
+  <string name="UltrasonicTest">Ultrasonic Test</string>
   <string name="MotorController">Motor Controller</string>
   <string name="ApplicationName">Xamarin.Mindstorm</string>
 </resources>

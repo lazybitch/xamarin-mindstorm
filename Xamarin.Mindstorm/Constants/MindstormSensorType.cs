@@ -8,9 +8,9 @@ namespace Xamarin.Mindstorm.Constants
 
         Temperature = 2,
 
-        Light = 3,
+        Reflection = 3,
 
-        Rorarion = 4,
+        Rotarion = 4,
 
         LightActive = 5,
 
@@ -20,6 +20,10 @@ namespace Xamarin.Mindstorm.Constants
 
         SoundDba = 8,
 
-        Custom = 9
+        Custom = 9,
+
+        Lowspeed = 10,
+
+        Lowspeed9V = 11
     }
 }

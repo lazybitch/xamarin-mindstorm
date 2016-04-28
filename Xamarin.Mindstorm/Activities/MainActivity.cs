@@ -40,6 +40,15 @@
 
                 StartActivity(intent);
             };
+
+            var buttonUltrasonicTest = FindViewById<Button>(Resource.Id.ButtonUltrasonicTest);
+
+            buttonUltrasonicTest.Click += (s, e) =>
+            {
+                var intent = new Intent(this, typeof (UltrasonicActivity));
+
+                StartActivity(intent);
+            };
         }
     }
 }
