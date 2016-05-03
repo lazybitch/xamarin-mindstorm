@@ -20,5 +20,10 @@ namespace Xamarin.Mindstorm.Constants
         public const byte MotorOn = 0x01;
         public const byte Brake = 0x02;
         public const byte MotorRunStateRunning = 0x20;
+
+        // Low Speed Bus
+        public const byte LowSpeedWrite = 0x0F;
+        public const byte LowSpeedStatus = 0x0E;
+        public const byte LowSpeedRead = 0x10;
     }
 }

@@ -122,5 +122,54 @@ namespace Xamarin.Mindstorm.Services
 
             return message;
         }
+
+        public static MindstormMessage GetLowSpeedWriteMessage(MindstormSensor sensor)
+        {
+            var message = new MindstormMessage(7)
+            {
+                Payload =
+                {
+                    [0] = MindstormCommands.DirectCommandReply,
+                    [1] = MindstormCommands.LowSpeedWrite,
+                    [2] = (byte) sensor,
+                    [3] = 2, // Read command length
+                    [4] = 1, // Expected bytes
+                    [5] = 0x02, // Low Speed read command
+                    [6] = 0x42 // Low Speed read command
+                }
+            };
+
+            return message;
+        }
+
+        public static MindstormMessage GetLowSpeedStatusMessage(MindstormSensor sensor)
+        {
+            var message = new MindstormMessage(3)
+            {
+                Payload =
+                {
+                    [0] = MindstormCommands.DirectCommandReply,
+                    [1] = MindstormCommands.LowSpeedStatus,
+                    [2] = (byte) sensor
+                }
+            };
+
+            return message;
+        }
+
+        public static MindstormMessage GetLowSpeedReadMessage(MindstormSensor sensor)
+        {
+            var message = new MindstormMessage(7)
+            {
+                Payload =
+                {
+                    [0] = MindstormCommands.DirectCommandReply,
+                    [1] = MindstormCommands.LowSpeedRead,
+                    [2] = (byte) sensor
+                }
+            };
+
+            return message;
+        }
     }
 }

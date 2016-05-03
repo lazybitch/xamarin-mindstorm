@@ -8,5 +8,12 @@ namespace Xamarin.Mindstorm.Data
         }
 
         public byte[] Payload { set; get; }
+
+        public override string ToString()
+        {
+            var result = string.Join(" ", Payload);
+
+            return result;
+        }
     }
 }

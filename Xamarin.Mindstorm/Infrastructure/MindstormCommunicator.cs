@@ -74,5 +74,14 @@ namespace Xamarin.Mindstorm.Infrastructure
 
             return result;
         }
+
+        public MindstormMessage WriteAndReadMessage(MindstormMessage message)
+        {
+            WriteMessage(message);
+
+            var result = ReadMessage();
+
+            return result;
+        }
     }
 }
