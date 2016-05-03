@@ -24,7 +24,7 @@ namespace Xamarin.Mindstorm.Activities
             communicator = new MindstormCommunicator();
             communicator.Connect();
 
-            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(MindstormSensor.Fourth, MindstormSensorType.Lowspeed9V, MindstormSensorMode.Boolean);
+            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(MindstormSensor.First, MindstormSensorType.Lowspeed9V, MindstormSensorMode.Boolean);
             communicator.WriteMessage(sensorModeMessage);
             communicator.ReadMessage();
 
@@ -34,23 +34,34 @@ namespace Xamarin.Mindstorm.Activities
 
             buttonTest.Click += (s, e) =>
             {
+                Thread.Sleep(500);
+
                 Task.Run(() =>
                 {
                     while (true)
                     {
-                        var readInputMessage = MindstormCommandService.GetSensorReadMessage(MindstormSensor.Fourth);
-                        communicator.WriteMessage(readInputMessage);
-      
-                        var readOutputMessage = communicator.ReadMessage();
-                        var sensorResponse = MindstormResponseService.GetSensorResponse(readOutputMessage);
+                        Thread.Sleep(100);
 
-                        Console.WriteLine("{0} {1} {2} {3} ",
-                            sensorResponse.Scaled,
-                            sensorResponse.Raw,
-                            sensorResponse.Normalized,
-                            sensorResponse.Calibrated);
+                        var writeMsg = MindstormCommandService.GetLowSpeedWriteMessage(MindstormSensor.First);
+                        communicator.WriteAndReadMessage(writeMsg);
 
                         Thread.Sleep(100);
+
+                        var statusMsg = MindstormCommandService.GetLowSpeedStatusMessage(MindstormSensor.First);
+                        var statusMsgRaw = communicator.WriteAndReadMessage(statusMsg);
+                        var statusMsgResponse = MindstormResponseService.GetStatusResponse(statusMsgRaw);
+
+                        Thread.Sleep(100);
+
+                        if (!statusMsgResponse.IsReady)
+                        {
+                            continue;
+                        }
+
+                        var readMsg = MindstormCommandService.GetLowSpeedReadMessage(MindstormSensor.First);
+                        var readMsgRaw = communicator.WriteAndReadMessage(readMsg);
+
+                        Console.WriteLine(readMsgRaw.ToString());
                     }
                 });
             };
