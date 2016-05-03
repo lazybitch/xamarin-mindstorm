@@ -27,5 +27,20 @@ namespace Xamarin.Mindstorm.Services
 
             return result;
         }
+
+        public static MindstormStatusResponse GetStatusResponse(MindstormMessage message)
+        {
+            if (message == null || message.Payload.Length != 4)
+            {
+                throw new ArgumentException("Invalid message.");
+            }
+
+            var result = new MindstormStatusResponse
+            {
+                IsReady = message.Payload[3] > 0
+            };
+
+            return result;
+        }
     }
 }
