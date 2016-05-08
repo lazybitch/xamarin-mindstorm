@@ -1,5 +1,6 @@
 namespace Xamarin.Mindstorm.Services
 {
+    using System;
     using Constants;
     using Infrastructure;
 
@@ -16,13 +17,8 @@ namespace Xamarin.Mindstorm.Services
             communicator = new MindstormCommunicator();
             communicator.Connect();
 
-            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(
-                MindstormSensor.First,
-                MindstormSensorType.Touch,
-                MindstormSensorMode.Boolean);
-
-            communicator.WriteMessage(sensorModeMessage);
-            communicator.ReadMessage();
+            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(MindstormSensor.First, MindstormSensorType.Lowspeed9V, MindstormSensorMode.Raw);
+            communicator.WriteAndReadMessage(sensorModeMessage);
         }
 
         public bool IsMovementAllowed()
@@ -45,6 +41,43 @@ namespace Xamarin.Mindstorm.Services
 
             communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorA, ZeroSpeed));
             communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorB, ZeroSpeed));
+        }
+
+        public void ProcessDistance()
+        {
+            var writeMsg = MindstormCommandService.GetLowSpeedWriteMessage(MindstormSensor.First);
+            communicator.WriteAndReadMessage(writeMsg);
+
+            var statusMsg = MindstormCommandService.GetLowSpeedStatusMessage(MindstormSensor.First);
+            var statusMsgRaw = communicator.WriteAndReadMessage(statusMsg);
+            var statusMsgResponse = MindstormResponseService.GetStatusResponse(statusMsgRaw);
+
+            if (!statusMsgResponse.IsReady)
+            {
+                return;
+            }
+
+            var readMsg = MindstormCommandService.GetLowSpeedReadMessage(MindstormSensor.First);
+            var readMsgRaw = communicator.WriteAndReadMessage(readMsg);
+            var readMsgResponse = MindstormResponseService.GetLowSpeedResponse(readMsgRaw);
+
+            Console.WriteLine(readMsgResponse.Raw);
+
+            if (readMsgResponse.Raw < 16)
+            {
+                communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorA, HallfSpeed));
+                communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorB, HallfSpeed));
+            }
+
+            if (readMsgResponse.Raw < 8)
+            {
+                communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorA, ZeroSpeed));
+                communicator.WriteMessage(MindstormCommandService.GetMotorMessage(MindstormComponents.MotorB, ZeroSpeed));
+            }
+
+            var frequency = 500 + readMsgResponse.Raw * 100;
+            var toneMsg = MindstormCommandService.GetToneMessage(frequency, 100);
+            communicator.WriteMessage(toneMsg);
         }
 
         public void ProcessMovement(MindstormMovement movement)

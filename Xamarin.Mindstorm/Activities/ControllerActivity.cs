@@ -43,7 +43,7 @@ namespace Xamarin.Mindstorm.Activities
             {
                 while (true)
                 {
-                    controllerService.ProcessBreak();
+                    controllerService.ProcessDistance();
                     Thread.Sleep(100);
                 }
                 // ReSharper disable once FunctionNeverReturns

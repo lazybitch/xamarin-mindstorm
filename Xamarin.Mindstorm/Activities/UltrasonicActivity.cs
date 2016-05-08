@@ -24,7 +24,7 @@ namespace Xamarin.Mindstorm.Activities
             communicator = new MindstormCommunicator();
             communicator.Connect();
 
-            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(MindstormSensor.First, MindstormSensorType.Lowspeed9V, MindstormSensorMode.Boolean);
+            var sensorModeMessage = MindstormCommandService.GetSensorModeMessage(MindstormSensor.First, MindstormSensorType.Lowspeed9V, MindstormSensorMode.Raw);
             communicator.WriteMessage(sensorModeMessage);
             communicator.ReadMessage();
 

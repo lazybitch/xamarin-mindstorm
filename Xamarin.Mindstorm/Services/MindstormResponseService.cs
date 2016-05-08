@@ -42,5 +42,20 @@ namespace Xamarin.Mindstorm.Services
 
             return result;
         }
+
+        public static MindstormLowSpeedResponse GetLowSpeedResponse(MindstormMessage message)
+        {
+            if (message == null || message.Payload.Length != 20)
+            {
+                throw new ArgumentException("Invalid message.");
+            }
+
+            var result = new MindstormLowSpeedResponse
+            {
+                Raw = message.Payload[4]
+            };
+
+            return result;
+        }
     }
 }
