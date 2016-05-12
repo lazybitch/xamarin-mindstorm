@@ -24,6 +24,18 @@ namespace Xamarin.Mindstorm.Constants
 
         Lowspeed = 10,
 
-        Lowspeed9V = 11
+        Lowspeed9V = 11,
+
+        Highspeed = 12,
+
+        ColorFull = 13,
+
+        ColorRed = 14,
+
+        ColorGreen = 15,
+
+        ColorBlue = 16,
+
+        ColorNone = 17
     }
 }

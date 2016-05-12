@@ -59,9 +59,11 @@
     <Compile Include="Constants\MindstormSensorMode.cs" />
     <Compile Include="Constants\MindstormSensor.cs" />
     <Compile Include="Constants\MindstormSensorType.cs" />
+    <Compile Include="Data\MindstormColorResponse.cs" />
     <Compile Include="Data\MindstormLowSpeedResponse.cs" />
     <Compile Include="Data\MindstormStatusResponse.cs" />
     <Compile Include="Data\MindstormSensorResponse.cs" />
+    <Compile Include="Services\MindstormColorService.cs" />
     <Compile Include="Services\MindstormCommandService.cs" />
     <Compile Include="Infrastructure\MindstormCommunicator.cs" />
     <Compile Include="Services\MindstormControllerService.cs" />
